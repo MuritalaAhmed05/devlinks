@@ -49,20 +49,34 @@ export default function Addlink() {
     setCurrentLink('');
   };
 
-  const handleSaveLink = () => {
-    if (currentPlatform && currentLink) {
-      const newLink = { platform: currentPlatform, link: currentLink, index: Date.now() };
-      const existingLinks = JSON.parse(localStorage.getItem('links')) || [];
-      localStorage.setItem('links', JSON.stringify([...existingLinks, newLink]));
-      setCurrentPromptIndex(null);
-    }
-  };
 
-  const handleRemoveLink = (indexToRemove) => {
+const handleRemoveLink = (indexToRemove) => {
+  try {
     const existingLinks = JSON.parse(localStorage.getItem('links')) || [];
     const updatedLinks = existingLinks.filter(link => link.index !== indexToRemove);
     localStorage.setItem('links', JSON.stringify(updatedLinks));
-  };
+  } catch (error) {
+    console.error('Error removing link:', error);
+  }
+};
+
+
+const handleSaveLink = () => {
+  if (currentPlatform && currentLink) {
+    const newLink = {
+      platform: currentPlatform,
+      link: currentLink,
+      index: Date.now() 
+    };
+    try {
+      const existingLinks = JSON.parse(localStorage.getItem('links')) || [];
+      localStorage.setItem('links', JSON.stringify([...existingLinks, newLink]));
+      setCurrentPromptIndex(null);
+    } catch (error) {
+      console.error('Error saving link:', error);
+    }
+  }
+};
 
   const handleRemovePrompt = () => {
     setCurrentPromptIndex(null);
