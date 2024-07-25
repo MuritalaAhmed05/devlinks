@@ -10,8 +10,8 @@ import Case from "../GetStarted/Rectangle 15.svg";
 import Inner from "../GetStarted/Subtract.svg";
 import ImageAdder from "../UpdateProfile/ph_image.svg";
 import WhiteImageAdder from "./Vector (3).svg"
-import { FaArrowRight } from 'react-icons/fa'; // Import arrow icon
-import { FaGithub, FaTwitter, FaLinkedin, FaFacebook, FaYoutube } from 'react-icons/fa'; // Import platform icons
+import { FaArrowRight } from 'react-icons/fa'; 
+import { FaGithub, FaTwitter, FaLinkedin, FaFacebook, FaYoutube } from 'react-icons/fa'; 
 
 export default function UpdateProfile() {
   const [purple, setPurple] = useState(false);
@@ -31,7 +31,7 @@ export default function UpdateProfile() {
   });
 
    useEffect(() => {
-    // Retrieve profile data from local storage
+    
     const storedProfile = localStorage.getItem('profile');
     if (storedProfile) {
       const parsedProfile = JSON.parse(storedProfile);
@@ -43,7 +43,7 @@ export default function UpdateProfile() {
       });
     }
 
-    // Retrieve links from local storage
+    
     const storedLinks = localStorage.getItem('links');
     if (storedLinks) {
       setLinks(JSON.parse(storedLinks));
@@ -51,17 +51,17 @@ export default function UpdateProfile() {
   }, []);
 
   const handleSave = () => {
-    // Save profile data to local storage
+    
     localStorage.setItem('profile', JSON.stringify(profile));
   
-    // Update the display profile state
+    
     setProfileDisplay({
       firstName: profile.firstName,
       lastName: profile.lastName,
       email: profile.email
     });
   
-    // Clear the form inputs
+    
     setProfile(prevProfile => ({
       ...prevProfile,
       firstName: '',
@@ -84,7 +84,7 @@ export default function UpdateProfile() {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        // Update profile state with the uploaded image URL
+        
         setProfile(prevProfile => ({
           ...prevProfile,
           profilePicture: reader.result
@@ -100,8 +100,8 @@ export default function UpdateProfile() {
     Twitter: 'bg-blue-500',
     LinkedIn: 'bg-blue-700',
     Facebook: 'bg-blue-600',
-    YouTube: 'bg-red-600', // Add YouTube color
-    // Add more platforms and their colors here
+    YouTube: 'bg-red-600', 
+    
   };
 
   const platformIcons = {
@@ -252,7 +252,7 @@ export default function UpdateProfile() {
               src={ImageAdder}
               alt="imageadder"
               className="z-10"
-               // Apply white color to the icon
+               
             />
             <span className="font-instrument font-heading-s text-purple text-body-m  ">
               + Upload Image
@@ -265,7 +265,7 @@ export default function UpdateProfile() {
               src={WhiteImageAdder}
               alt="imageadder"
               className="z-10"
-               // Apply white color filter to the icon
+               
             />
             <span className="font-instrument font-heading-s text-white text-body-m  ">
               Change Image

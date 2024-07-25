@@ -19,7 +19,7 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
-      // Redirect to GetStarted page if user is logged in
+      
       router.push("/GetStarted");
     }
   }, [user, router]);

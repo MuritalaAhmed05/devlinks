@@ -41,7 +41,7 @@ export default function CreateAccount() {
       }
     } catch (error) {
       console.error('Error:', error.message);
-      setError(error.message); // Set error message if signup fails
+      setError(error.message); 
     }
   };
 

@@ -15,20 +15,20 @@ export default function Profile() {
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
-    // Retrieve profile data from local storage
+    
     const storedProfile = localStorage.getItem('profile');
     if (storedProfile) {
       setProfile(JSON.parse(storedProfile));
     }
 
-    // Retrieve links from local storage
+    
     const storedLinks = localStorage.getItem('links');
     if (storedLinks) {
       setLinks(JSON.parse(storedLinks));
     }
   }, []);
 
-  // Icons with Tailwind CSS styles
+  
   const platformIcons = {
     GitHub: <FaGithub className="text-white" />,
     Twitter: <FaTwitter className="text-white" />,
@@ -37,7 +37,7 @@ export default function Profile() {
     YouTube: <FaYoutube className="text-white" />,
   };
 
-  // Background colors for platform links
+  
   const platformColors = {
     GitHub: 'bg-gray-800',
     Twitter: 'bg-blue-500',

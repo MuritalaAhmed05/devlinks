@@ -44,7 +44,7 @@ export default function Addlink() {
     profilePicture: ''
   });
   const handleAddLink = () => {
-    setCurrentPromptIndex(1); // Use a timestamp as a unique index
+    setCurrentPromptIndex(1); 
     setCurrentPlatform('');
     setCurrentLink('');
   };
@@ -68,7 +68,7 @@ export default function Addlink() {
     setCurrentPromptIndex(null);
   };
   useEffect(() => {
-    // Retrieve profile data from local storage
+    
     const storedProfile = localStorage.getItem('profile');
     if (storedProfile) {
       setProfile(JSON.parse(storedProfile));
