@@ -14,6 +14,9 @@ import { auth } from "@/app/firebase/config";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const[burEmail, setBurEmail] = useState(false);
+  const[burPassword, setBurPassword] = useState(false);
+  const[hover, setHover] = useState(false); 
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
   const router = useRouter();
 
@@ -35,11 +38,12 @@ export default function Login() {
 
   return (
     <main className="flex flex-col min-h-[100vh] justify-center items-center">
-      <div className="flex flex-col justify-center items-center">
-        <div className="flex justify-between items-center mb-[51px]">
-          <Image src={Log} alt="logo" className="mr-[10px]" />
-          <Image src={Devlink} alt="devLink" />
-        </div>
+      <div className="flex flex-col ">
+      <div className="flex justify-start sm:justify-center items-center mb-[51px]">
+  <Image src={Log} alt="logo" className="mr-[10px]" />
+  <Image src={Devlink} alt="devLink" />
+</div>
+
         <div className="bg-[#fff] p-[40px] rounded-custom">
           <h1 className="text-left text-dark-grey font-instrument text-heading-m font-bold leading-heading-m">
             Login
@@ -50,7 +54,7 @@ export default function Login() {
           <form onSubmit={handleLogin}>
             <label htmlFor="email">
               <span className="text-body-s font-normal leading-body-s text-dark-grey">Email address</span>
-              <div className="relative flex items-center h-[48px] mb-[24px] rounded-custom bg-white border border-borders">
+              <div className={`relative flex items-center h-[48px] mb-[24px] rounded-custom bg-white border border-borders ${burEmail ? 'border border-purple shadow-input-focus' :' border border-borders' }`}>
                 <Image src={Email} alt="email" className="mr-[16px] ml-[12px]" />
                 <input
                   id="email"
@@ -59,12 +63,14 @@ export default function Login() {
                   className="w-[78%] h-[46px] py-[12px] outline-none border-none"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
+                  onFocus= {(e) => setBurEmail(true)}
+                  onBlur = {(e) => setBurEmail(false)}
+                  />
+                 </div>
             </label>
             <label htmlFor="password">
               <span className="text-body-s font-normal leading-body-s text-dark-grey">Password</span>
-              <div className="relative flex items-center h-[48px] mb-[24px] rounded-[8px] bg-white border border-borders">
+              <div className={`relative flex items-center h-[48px] mb-[24px] rounded-[8px] bg-white border border-borders ${burPassword ? 'border border-purple shadow-input-focus' :' border border-borders' }`}>
                 <Image src={Lock} alt="lock" className="mr-[16px] ml-[12px]" />
                 <input
                   id="password"
@@ -73,13 +79,16 @@ export default function Login() {
                   className="w-[78%] h-[46px] py-[12px] outline-none border-none"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onFocus= {(e) => setBurPassword(true)}
+                  onBlur = {(e) => setBurPassword(false)}
                 />
               </div>
             </label>
             {error && <p className="text-red-500 text-xs">{error.message}</p>}
             <button
-              type="submit"
-              className="w-[100%] h-[46px] py-[11px] px-[27px] gap-[8px] mb-[24px] rounded-[8px] bg-[#633CFF] text-[#fff]"
+             className={`w-[100%] h-[46px] py-[11px] px-[27px] gap-[8px] mb-[24px] rounded-[8px] bg-[#633CFF] text-[#fff] ${hover ? 'bg-purple-hover' :' bg-purple' }`}
+             onMouseEnter= {(e) => setHover(true)}
+             onMouseLeave = {(e) => setHover(false)}
             >
               Login
             </button>

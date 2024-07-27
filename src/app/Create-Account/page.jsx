@@ -16,12 +16,18 @@ export default function CreateAccount() {
   const [email, setEmail] = useState("");
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const[burEmail, setBurEmail] = useState(false);
+  const[burPassword, setBurPassword] = useState(false);
+  const[hover, setHover] = useState(false);
+  const[red, setRed] = useState(false);
+  const[burConfirmPassword, setBurConfirmPassword] = useState(false);
   const [createUserWithEmailAndPassword, ] = useCreateUserWithEmailAndPassword(auth);
   const router = useRouter(); 
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     setError(''); 
+      
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
@@ -36,7 +42,7 @@ export default function CreateAccount() {
         setPassword("");
         setConfirmPassword("");
         router.push("/Login"); 
-      } else {
+      }else{
         setError('Failed to create account');
       }
     } catch (error) {
@@ -47,11 +53,13 @@ export default function CreateAccount() {
 
   return (
     <main className="flex flex-col min-h-[100vh] justify-center items-center">
-      <div className="flex flex-col justify-center items-center">
-        <div className="flex justify-between items-center mb-[51px]">
-          <Image src={Log} alt="logo" className="mr-[10px]" />
-          <Image src={Devlink} alt="devLink" />
-        </div>
+      <div className="flex flex-col ">
+      <div className="flex justify-start sm:justify-center items-center sm:items-center mb-[51px]">
+  <Image src={Log} alt="logo" className="mr-[10px]" />
+  <Image src={Devlink} alt="devLink" />
+</div>
+
+
         <div className="bg-[#fff] p-[40px]">
           <h1 className="text-left text-dark-grey font-instrument text-heading-m font-bold leading-heading-m">
             Create account
@@ -64,15 +72,17 @@ export default function CreateAccount() {
               <span className="text-body-s font-normal leading-body-s text-dark-grey">
                 Email address
               </span>
-              <div className="relative flex items-center h-[48px] mb-[24px] rounded-custom bg-white border border-borders">
+              <div className={`relative flex items-center h-[48px] mb-[24px] rounded-custom bg-white border border-borders ${red ? 'border border-red' :'border border-borders'} ${burEmail ? 'border border-purple shadow-input-focus' :' border border-borders' }`}>
                 <Image src={Email} alt="email" className="mr-[16px] ml-[12px]" />
                 <input
                   id="email"
                   type="email"
                   placeholder="Enter your email"
-                  className="w-[78%] h-[46px] py-[12px] outline-none border-none"
+                  className="w-[78%] h-[46px] py-[12px] outline-none border-none "
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value) }
+                  onFocus= {(e) => setBurEmail(true)}
+                  onBlur = {(e) => setBurEmail(false)}
                 />
               </div>
             </label>
@@ -80,7 +90,7 @@ export default function CreateAccount() {
               <span className="text-body-s font-normal leading-body-s text-dark-grey">
                 Password
               </span>
-              <div className="relative flex items-center h-[48px] mb-[24px] rounded-[8px] bg-white border border-borders">
+              <div className={`relative flex items-center h-[48px] mb-[24px] rounded-[8px] bg-white border border-borders ${burPassword ? 'border border-purple shadow-input-focus' :' border border-borders' }`}>
                 <Image src={Lock} alt="lock" className="mr-[16px] ml-[12px]" />
                 <input
                   id="password"
@@ -89,6 +99,8 @@ export default function CreateAccount() {
                   className="w-[78%] h-[46px] py-[12px] outline-none border-none"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  onFocus= {(e) => setBurPassword(true)}
+                  onBlur = {(e) => setBurPassword(false)}
                 />
               </div>
             </label>
@@ -96,7 +108,7 @@ export default function CreateAccount() {
               <span className="text-body-s font-normal leading-body-s text-dark-grey">
                 Confirm password
               </span>
-              <div className="relative flex items-center h-[48px] mb-[24px] rounded-[8px] bg-white border border-borders">
+              <div className={`relative flex items-center h-[48px] mb-[24px] rounded-[8px] bg-white border border-borders ${burConfirmPassword ? 'border border-purple shadow-input-focus' :' border border-borders' }`}>
                 <Image src={Lock} alt="lock" className="mr-[16px] ml-[12px]" />
                 <input
                   id="confirm-password"
@@ -105,6 +117,8 @@ export default function CreateAccount() {
                   className="w-[78%] h-[46px] py-[12px] outline-none border-none"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
+                  onFocus= {(e) => setBurConfirmPassword(true)}
+                  onBlur = {(e) => setBurConfirmPassword(false)}
                 />
               </div>
             </label>
@@ -114,7 +128,10 @@ export default function CreateAccount() {
             </p>
             <button
               type="submit"
-              className="w-[100%] h-[46px] py-[11px] px-[27px] gap-[8px] mb-[24px] rounded-[8px] bg-[#633CFF] text-[#fff]"
+              className={`w-[100%] h-[46px] py-[11px] px-[27px] gap-[8px] mb-[24px] rounded-[8px] bg-[#633CFF] text-[#fff] ${hover ? 'bg-purple-hover' :' bg-purple' } `}
+              onMouseEnter= {(e) => setHover(true)}
+              onMouseLeave = {(e) => setHover(false)}
+             
             >
               Create new account
             </button>

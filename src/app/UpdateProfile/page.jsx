@@ -11,6 +11,7 @@ import Inner from "../GetStarted/Subtract.svg";
 import ImageAdder from "../UpdateProfile/ph_image.svg";
 import WhiteImageAdder from "./Vector (3).svg"
 import { FaArrowRight } from 'react-icons/fa'; 
+import Eye from "./ph_eye-bold.svg"
 import { FaGithub, FaTwitter, FaLinkedin, FaFacebook, FaYoutube } from 'react-icons/fa'; 
 
 export default function UpdateProfile() {
@@ -119,7 +120,7 @@ export default function UpdateProfile() {
       <div className="flex items-start justify-between p-[24px] self-stretch bg-white mb-[51px]">
         <div className="flex justify-between items-center">
           <Image src={Log} alt="logo" className="mr-[10px]" />
-          <Image src={Devlink} alt="devLink" />
+          <Image src={Devlink} alt="devLink" className="hidden sm:block"/>
         </div>
 
         <Link href="/Addlink" 
@@ -130,13 +131,13 @@ export default function UpdateProfile() {
           <div className="flex items-center gap-2 p-[11px_27px] rounded-custom"
           >
             <Image src={linkIcon} alt="link" />
-            <span className="text-grey font-instrument text-lg font-semibold leading-6">
+            <span className="text-grey font-instrument text-lg font-semibold leading-6 hidden sm:block">
               Links
             </span>
           </div>
 
           <div
-            className="flex items-center gap-2 p-2 rounded-lg bg-light-purple"
+            className="flex items-center gap-2 p-[11px_27px]  rounded-lg bg-light-purple"
             onMouseEnter={() => setPurple(true)}
             onMouseLeave={() => setPurple(false)}
           >
@@ -147,14 +148,14 @@ export default function UpdateProfile() {
                 filter: 'brightness(0) saturate(100%) invert(30%) sepia(50%) saturate(6000%) hue-rotate(240deg) brightness(90%) contrast(100%)'
               }}
             />
-            <span className="text-purple font-instrument text-lg font-semibold leading-6">
+            <span className="text-purple font-instrument text-lg font-semibold leading-6 hidden sm:block">
               Profile Details
             </span>
           </div>
         </Link>
 
         <Link href="./Previewprofile"
-          className={`flex flex-col items-start gap-2 p-[11px_27px] border border-purple rounded-custom text-purple font-instrument text-lg font-semibold leading-6 ${
+          className={`flex flex-col items-start gap-2 p-[9px_20px]  sm:p-[11px_27px] border border-purple rounded-custom text-purple font-instrument text-lg font-semibold leading-6 ${
             preview ? 'bg-light-purple' : 'bg-white'
           }`}
           onMouseEnter={() => setPreview(true)}
@@ -164,12 +165,17 @@ export default function UpdateProfile() {
             handleSave();
           }}
         >
-          Preview
+          <Image
+              src={Eye}
+              alt="eye"
+              className="block sm:hidden"
+              />
+          <span className="hidden sm:block">Preview</span>
         </Link>
       </div>
 
       <div className="flex gap-6">
-        <div className="relative flex items-center justify-center gap-2 p-6 bg-white rounded-customs w-[560px]">
+      <div className="relative xl:flex hidden items-center justify-center gap-2 p-6 bg-white rounded-lg w-[560px]  ">
           <Image src={Case} alt="case" />
           <Image src={Inner} alt="inner" className="absolute" />
           <div className="absolute flex-col items-center gap-6 z-10 flex">
@@ -219,7 +225,7 @@ export default function UpdateProfile() {
         </div>
 
         <div className="flex flex-col w-full">
-          <div className="flex flex-col p-[40px] bg-white rounded-custom-t">
+          <div className="flex flex-col  p-[40px] bg-white rounded-custom-t">
             <h1 className="text-heading-m font-heading-m text-dark-grey font-instrument-sans font-bold">
               Profile Details
             </h1>
@@ -227,14 +233,15 @@ export default function UpdateProfile() {
               Add your details to create a personal touch to your profile.
             </p>
 
-            <div className="flex items-center p-[20px] gap-[12px] mb-[20px] bg-light-grey justify-around rounded-custom">
+            <div className="flex items-center p-[20px] gap-[12px] mb-[20px] flex-col sm:flex-row sm:gap-20 bg-light-grey sm:justify-around justify-start rounded-custom">
+
               <div>
-                <p className="text-grey font-normal text-body-m">Profile picture</p>
+                <p className="text-grey  font-normal text-body-m sm:text-center text-left">Profile picture</p>
               </div>
 
-              <div className="flex justify-start items-center">
+              <div className="flex justify-start flex-col sm:flex-row items-center sm:justify-around">
       <div 
-        className={`h-[193px] w-[193px] rounded-customs bg-light-purple flex-col flex items-center justify-center mr-[15px] cursor-pointer relative`}
+       className={`h-[193px] w-[193px] rounded-customs bg-light-purple flex-col flex items-center justify-center mr-[15px] cursor-pointer relative`}
         onClick={() => document.getElementById('fileInput').click()}
         style={{
           backgroundImage: `url(${profile.profilePicture})`,
@@ -276,7 +283,7 @@ export default function UpdateProfile() {
         )}
       </div>
       <div>
-        <p className="font-instrument font-normal text-xs text-grey">
+        <p className="font-instrument font-normal mt-5 sm:mt-0 text-xs text-grey">
           Image must be below 1024x1024px.<br /> Use PNG or JPG format.
         </p>
       </div>
@@ -285,7 +292,7 @@ export default function UpdateProfile() {
             </div>
 
             <div className="flex flex-col p-[20px] gap-[12px] mb-[20px] bg-light-grey rounded-custom">
-              <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row  items-start sm:item-center justify-between">
                 <label htmlFor="firstName" className="text-grey font-normal font-instrument text-body-m">
                   First Name*
                 </label>
@@ -296,10 +303,10 @@ export default function UpdateProfile() {
                   placeholder="eg. John"
                   value={profile.firstName}
                   onChange={handleInputChange}
-                  className="h-[48px] w-[432px] rounded-custom py-[12px] px-[16px] gap-3 border outline-none"
+                  className="h-[48px] w-[100%] sm:w-[432px] rounded-custom py-[12px] px-[16px] gap-3 border outline-none"
                 />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row  items-start sm:item-center justify-between">
                 <label htmlFor="lastName" className="text-grey font-normal font-instrument text-body-m">
                   Last Name*
                 </label>
@@ -310,10 +317,10 @@ export default function UpdateProfile() {
                   placeholder="eg. Appleseed"
                   value={profile.lastName}
                   onChange={handleInputChange}
-                  className="h-[48px] w-[432px] rounded-custom py-[12px] px-[16px] gap-3 border outline-none"
+                 className="h-[48px] w-[100%] sm:w-[432px] rounded-custom py-[12px] px-[16px] gap-3 border outline-none"
                 />
               </div>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col sm:flex-row  items-start sm:item-center justify-between">
                 <label htmlFor="email" className="text-grey font-normal font-instrument text-body-m">
                   Email*
                 </label>
@@ -324,21 +331,20 @@ export default function UpdateProfile() {
                   placeholder="eg. johnappleseed@gmail.com"
                   value={profile.email}
                   onChange={handleInputChange}
-                  className="h-[48px] w-[432px] rounded-custom py-[12px] px-[16px] gap-3 border outline-none"
+                  className="h-[48px] w-[100%] sm:w-[432px] rounded-custom py-[12px] px-[16px] gap-3 border outline-none"
                 />
               </div>
             </div>
 
-            <div className="flex justify-end">
-              <button
-                type="button"
-                onClick={handleSave}
-                className="flex items-center p-[10px_30px] rounded-custom bg-purple text-white font-instrument text-body-m font-semibold"
-              >
-                Save
-              </button>
-            </div>
           </div>
+            <div className="flex px-10 py-6 flex-col items-end gap-2 self-stretch mt-[5px] bg-[#fff] rounded-custom-b">
+            <button
+              className="text-white text-heading-s font-heading-s font-instrument bg-purple text-center w-full sm:w-auto rounded-custom opacity-25 flex px-6 py-2.5 flex-col items-center gap-2"
+            onClick={handleSave}
+            >
+              Save
+            </button>
+            </div>
         </div>
       </div>
     </main>

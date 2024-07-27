@@ -48,20 +48,21 @@ export default function Profile() {
 
   return (
     <div>
-      <div className='h-[357px] bg-purple rounded-plan'>
-        <div className='p-[24px] bg-purple h-[126px] z-10 gap-2'>
-          <div className='bg-white rounded-customs flex justify-between items-center p-pad-plan'>
-            <Link href="./Addlink" className='flex flex-col items-start gap-2 p-[11px_27px] border border-purple rounded-custom text-purple font-instrument text-lg font-semibold leading-6'>
+      <div className='h-[357px] bg-white sm:bg-purple rounded-plan'>
+        <div className='p-[24px] bg-white sm:bg-purple h-[126px] z-10 gap-2'>
+          <div className='bg-white rounded-customs flex justify-between items-center p-auto sm:p-pad-plan'>
+            <Link href="./Addlink" className='flex flex-col items-center gap-2 p-[11px_27px] border border-purple rounded-custom h-[46px] sm:h-auto text-purple font-instrument text-body-m font-semibold leading-6'>
               Back to Editor
             </Link>
-            <button className='text-white text-heading-s font-heading-s font-instrument-sans bg-[#633CFF] rounded-custom flex px-6 py-2.5 flex-col items-start gap-2'>
+            <button className='text-white text-heading-s font-heading-s font-instrument-sans bg-[#633CFF] rounded-custom h-[46px] sm:h-auto flex p-[11px_27px] text-body-m flex-col items-start gap-2 leading-6'>
               Share Link
             </button>
           </div>
         </div>
       </div>
 
-      <div className='w-[349px] h-[569px] p-main-pad gap-3 absolute top-[208px] left-[546px] rounded-custom-big bg-white shadow-pad-shade'>
+      <div className='w-[349px] h-[569px] p-main-pad gap-3 fixed inset-0 m-auto mt-[220px] rounded-custom-big bg-white shadow-pad-shade flex justify-center items-center'>
+
         <div className="relative flex flex-col items-center gap-6 z-10">
           <div className="relative w-[96px] h-[96px] bg-light z-100 rounded-full">
             {profile.profilePicture ? (

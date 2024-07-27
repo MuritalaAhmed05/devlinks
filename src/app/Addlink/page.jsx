@@ -11,6 +11,7 @@ import Inner from "../GetStarted/Subtract.svg";
 import CustomDropdown from '../Addlink/CustomDropdown'; 
 import Equal from "./Frame 248.svg";
 import { FaGithub, FaYoutube, FaFacebook, FaTwitter } from 'react-icons/fa';
+import Eye from "./ph_eye-bold.svg"
 import { MdArrowForward } from 'react-icons/md';
 
 const platforms = [
@@ -95,13 +96,13 @@ const handleSaveLink = () => {
       <div className="flex items-start justify-between p-6 bg-white mb-12">
         <div className="flex items-center">
           <Image src={Log} alt="logo" className="mr-[10px]" />
-          <Image src={Devlink} alt="devLink" />
+          <Image src={Devlink} alt="devLink" className="hidden sm:block" />
         </div>
 
         <div className="flex">
-          <div className="flex items-center gap-2 p-[11px_27px] rounded-custom bg-light-purple">
+          <div className="flex items-center gap-2 p-[11px_27px] mr-[10px] sm:mr-0 rounded-custom bg-light-purple">
             <Image src={linkIcon} alt="links" />
-            <span className="text-purple font-instrument text-lg font-semibold leading-6">
+            <span className="text-purple font-instrument text-lg font-semibold leading-6 hidden sm:block">
               Links
             </span>
           </div>
@@ -120,13 +121,14 @@ const handleSaveLink = () => {
                   : "none"
               }}
             />
-            <span className="font-instrument text-lg font-semibold leading-6">
+            <span className="font-instrument text-lg font-semibold leading-6 hidden sm:block">
+              
               Profile Details
             </span>
           </Link>
         </div>
         <Link href="/Previewprofile"
-          className={`flex flex-col items-start gap-2 p-[11px_27px] border border-purple rounded-custom text-purple font-instrument text-lg font-semibold leading-6 ${
+          className={`flex  items-start gap-2 p-[9px_20px]  sm:p-[11px_27px] border  border-purple rounded-custom text-purple font-instrument text-lg font-semibold leading-6 ${
             preview ? 'bg-light-purple' : 'bg-white'
           }`}
           onMouseEnter={() => setPreview(true)}
@@ -136,13 +138,18 @@ const handleSaveLink = () => {
             handleSave();
           }}
         >
-          Preview
+          <Image
+              src={Eye}
+              alt="eye"
+              className="block sm:hidden"
+              />
+          <span className="hidden sm:block">Preview</span>
         </Link>
        
-      </div>
+      </div>    
 
       <div className="flex gap-6">
-        <div className="relative flex items-center justify-center gap-2 p-6 bg-white rounded-lg w-[560px]">
+        <div className="relative xl:flex hidden items-center justify-center gap-2 p-6 bg-white rounded-lg w-[560px]  ">
           <Image src={Case} alt="case" />
           <Image src={Inner} alt="inner" className="absolute" />
           <div className="absolute flex-col items-center gap-6 z-10 flex">
@@ -249,9 +256,11 @@ const handleSaveLink = () => {
             </div>
           </div>
 
-          <div className="flex px-10 py-6 flex-col items-end gap-2 bg-white rounded-b-lg">
+          <div className="flex px-10 py-6 flex-col items-end gap-2 self-stretch mt-[5px] bg-[#fff] rounded-custom-b">
             <button
-              className={`text-white text-heading-s font-heading-s font-instrument-sans bg-purple rounded-lg flex px-6 py-2.5 ${save ? 'bg-light-purple' : 'bg-purple'}`}
+              className={`text-white text-heading-s font-heading-s font-instrument bg-purple text-center w-full sm:w-auto rounded-custom opacity-25 flex px-6 py-2.5 flex-col items-center gap-2
+            ${save ? "bg-purple-hover" : "bg-purple"}
+            `}
               onMouseEnter={() => setSave(true)}
               onMouseLeave={() => setSave(false)}
               onClick={handleSaveLink}
